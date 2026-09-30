@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
   BadgeIndianRupee,
@@ -30,6 +29,7 @@ import {
   type MarketingTask,
   type MarketingType,
 } from "@/lib/marketing-shared";
+import { isDemoMode } from "@/lib/demo";
 
 const makeTask = (
   id: string,
@@ -161,7 +161,10 @@ export default async function MarketingPreview({
 }: {
   searchParams: Promise<{ view?: string; category?: string }>;
 }) {
-  if (process.env.NODE_ENV !== "development") notFound();
+  // The workspace is available locally during development and on Vercel when
+  // no live API is configured. A configured production backend continues to
+  // use the normal /marketing route instead.
+  if (process.env.NODE_ENV !== "development" && !isDemoMode()) return null;
   const { view, category: requestedCategory } = await searchParams;
   const category =
     requestedCategory === "ai_video" ? "video" : requestedCategory;
