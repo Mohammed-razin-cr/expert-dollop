@@ -1,0 +1,51 @@
+{
+  "results": [
+    {
+      "name": "Login rejects wrong password and accepts the testing account",
+      "passed": true
+    },
+    {
+      "name": "Dashboard totals distinguish approved and published output",
+      "passed": true
+    },
+    {
+      "name": "All category links use SPA navigation with matching headings",
+      "passed": true
+    },
+    {
+      "name": "Modal validation, Escape and keyboard focus containment",
+      "passed": true
+    },
+    {
+      "name": "Create every task type including AI video and community tasks",
+      "passed": true
+    },
+    {
+      "name": "Every task type can start and submit with proof or valid links",
+      "passed": true
+    },
+    {
+      "name": "Search, status, platform, date and reset filters",
+      "passed": true
+    },
+    {
+      "name": "Task deletion removes its attachment and activity without affecting other tasks",
+      "passed": true
+    },
+    {
+      "name": "Social month comparison, daily replacement, validation and persistence",
+      "passed": true
+    },
+    {
+      "name": "Responsive dashboard, dialogs, task list and social pages",
+      "passed": true
+    },
+    {
+      "name": "Profile keyboard/outside dismissal, logout and saved-data retention",
+      "passed": false,
+      "error": "locator.click: Timeout 12000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'Digital Marketing Dashboard' })\u001b[22m\n\u001b[2m    - locator resolved to <h1 class=\"text-2xl font-semibold text-slate-950 sm:text-[28px]\">Digital Marketing Dashboard</h1>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"space-y-2 px-4 py-3 text-xs text-slate-600\">…</div> from <header class=\"flex h-16 items-center justify-end gap-5 border-b border-slate-200 bg-white px-6\">…</header> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"space-y-2 px-4 py-3 text-xs text-slate-600\">…</div> from <header class=\"flex h-16 items-center justify-end gap-5 border-b border-slate-200 bg-white px-6\">…</header> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    23 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"space-y-2 px-4 py-3 text-xs text-slate-600\">…</div> from <header class=\"flex h-16 items-center justify-end gap-5 border-b border-slate-200 bg-white px-6\">…</header> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+    }
+  ],
+  "errors": [],
+  "checkedAt": "2026-09-25T04:30:28.765Z"
+}

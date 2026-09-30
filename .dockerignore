@@ -1,0 +1,10 @@
+# Everything the image builds for itself, or must never be baked into it.
+# .env* matters most: secrets arrive as Railway variables at build and run
+# time, and a copied .env.local would both leak and silently override them.
+node_modules
+.next
+.env*
+.vercel
+*.log
+supabase
+scripts/dev.mjs

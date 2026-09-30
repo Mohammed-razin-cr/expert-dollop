@@ -1,0 +1,11 @@
+node_modules
+.next
+.env*.local
+.vercel
+*.log
+
+.vercel
+.env*
+
+# ...but the template must be committed
+!.env.example
