@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { apiEnv } from "./env";
+import { DEMO_SESSION_COOKIE, isDemoMode } from '@/lib/demo'
 
 const PUBLIC_PATHS = [
   "/login",
@@ -14,14 +15,23 @@ export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
   const path = request.nextUrl.pathname;
 
-  // The local Digital Marketing test flow is intentionally database-free.
-  // Skip session setup before apiEnv() so it also works on a fresh checkout
-  // without API credentials.
-  if (
-    process.env.NODE_ENV === "development" &&
-    (path === "/login" || path === "/marketing-preview")
-  ) {
-    return response;
+  // A Vercel-only preview has no database or API credentials. It exposes the
+  // self-contained Digital Marketing workspace behind one demo account instead
+  // of allowing the missing backend configuration to crash every request.
+  if (isDemoMode()) {
+    const signedIn = request.cookies.get(DEMO_SESSION_COOKIE)?.value === 'active'
+    if (path === '/login') {
+      return signedIn
+        ? NextResponse.redirect(new URL('/marketing-preview', request.url))
+        : response
+    }
+    if (path.startsWith('/marketing-preview')) {
+      return signedIn
+        ? response
+        : NextResponse.redirect(new URL('/login', request.url))
+    }
+    if (path.startsWith('/auth/demo')) return response
+    return NextResponse.redirect(new URL('/marketing-preview', request.url))
   }
 
   // Throws with the variable names when the deployment is unconfigured.

@@ -43,8 +43,9 @@ export function PreviewProfileMenu() {
   }, [open]);
 
   const logout = () => {
-    localStorage.removeItem("oms-marketing-demo-session");
-    router.replace("/login");
+    document.cookie = 'oms-demo-session=; Max-Age=0; Path=/; SameSite=Lax'
+    router.replace('/login')
+    router.refresh()
   };
 
   return (

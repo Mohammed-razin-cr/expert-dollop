@@ -19,22 +19,22 @@ export default function LoginPage() {
     setLoading(true);
     setError(null);
     const normalizedEmail = email.trim().toLowerCase();
-    if (
-      process.env.NODE_ENV === "development" &&
-      normalizedEmail === "saqib@electrobtech.in"
-    ) {
-      if (password !== "Electrobtech@123") {
-        setError("Invalid email or password.");
-        setLoading(false);
-        return;
-      }
+    if (normalizedEmail === "saqib@electrobtech.in") {
       try {
-        localStorage.setItem("oms-marketing-demo-session", "1");
+        const response = await fetch('/auth/demo', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ email: normalizedEmail, password }),
+        })
+        if (!response.ok) {
+          const result = await response.json().catch(() => null)
+          setError(result?.error ?? 'Invalid email or password.')
+          setLoading(false)
+          return
+        }
         router.replace("/marketing-preview");
       } catch {
-        setError(
-          "Browser storage is unavailable. Enable it to use the testing workspace.",
-        );
+        setError("Unable to sign in. Please try again when the server is available.");
         setLoading(false);
       }
       return;
@@ -75,7 +75,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {process.env.NODE_ENV === "development" && (
+        {!process.env.NEXT_PUBLIC_ANON_KEY && (
           <div className="mb-5 flex items-start gap-2 rounded-md border border-blue-200 bg-blue-50 p-3 text-xs leading-5 text-blue-800">
             <FlaskConical
               className="mt-0.5 h-4 w-4 shrink-0"
@@ -84,7 +84,7 @@ export default function LoginPage() {
             <p>
               <span className="font-medium">Digital Marketing testing:</span>{" "}
               use <span className="font-medium">saqib@electrobtech.in</span>.
-              Test data stays in this browser.
+              This is a database-free demo workspace.
             </p>
           </div>
         )}
